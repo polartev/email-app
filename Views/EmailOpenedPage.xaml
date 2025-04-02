@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Pmail.ViewModels"
+             xmlns:local="clr-namespace:Pmail"
+             x:Class="Pmail.Views.EmailOpenedPage"
+             x:DataType="vm:EmailViewModel"
+             Title="Email">
+    <ScrollView>
+        <VerticalStackLayout Margin="50,40">
+            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto" Padding="10" ColumnSpacing="9">
+                <Border Grid.RowSpan="2" WidthRequest="40" HeightRequest="40" Padding="2"
+                        Background="#F5F5F5" VerticalOptions="Center" StrokeShape="RoundRectangle 10">
+                    <Image Source="acc_icon.png" VerticalOptions="Center" HorizontalOptions="Center"/>
+                </Border>
+                <Label Grid.Column="1" Text="{Binding From}"
+                       FontAttributes="Bold" FontSize="16"
+                       VerticalOptions="Center"/>
+                <Label Grid.Column="1" Grid.Row="1"
+                       VerticalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="to " FontSize="14" TextColor="Gray"/>
+                            <Span Text="{Binding To}" FontSize="14" TextColor="Gray"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+            <Border Stroke="Gray" StrokeThickness="1" HeightRequest="1" HorizontalOptions="Fill"/>
+            <Label Padding="10">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Subject: " FontSize="14" TextColor="Gray"></Span>
+                        <Span Text="{Binding Subject}" FontSize="14"></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="{Binding Body}" LineBreakMode="WordWrap"
+                   FontSize="14" Padding="10"/>
+            <Label Text="{Binding Date, StringFormat='{0:dd.MM.yyyy HH:mm}'}" TextColor="Gray"
+                   FontSize="14" Padding="10" HorizontalOptions="End"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

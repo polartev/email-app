@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Pmail.ViewModels"
+             xmlns:local="clr-namespace:Pmail"
+             x:Class="Pmail.Views.EmailListPage"
+             x:DataType="vm:EmailListViewModel"
+             Title="Emails"
+             BindingContext="{x:Static local:App.EmailListViewModel}">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <HorizontalStackLayout
+                Spacing="10"
+                HorizontalOptions="Center">
+
+                <Image
+                    Source="email_history.jpg"
+                    HeightRequest="50"
+                    WidthRequest="50" />
+
+                <Label
+                    Text="Emails History"
+                    Style="{StaticResource Headline}"
+                    SemanticProperties.HeadingLevel="Level1" />
+            </HorizontalStackLayout>
+            <ListView ItemsSource="{Binding Emails}" SelectedItem="{Binding SelectedEmail, Mode=OneWayToSource}" Margin="10" ItemTapped="ListView_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="5">
+                                <Label Text="{Binding Subject}" x:DataType="vm:EmailViewModel" FontAttributes="Bold" HorizontalOptions="StartAndExpand"/>
+
+                                <Label Text="{Binding To}" x:DataType="vm:EmailViewModel" HorizontalOptions="CenterAndExpand"/>
+
+                                <Label Text="{Binding Date, StringFormat='{0:dd.MM.yyyy HH:mm}'}" x:DataType="vm:EmailViewModel" HorizontalOptions="End"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

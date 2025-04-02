@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Pmail.ViewModels"
+             xmlns:local="clr-namespace:Pmail"
+             x:Class="Pmail.Views.EmailPage"
+             x:DataType="vm:EmailFormViewModel"
+             Title="Email">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <HorizontalStackLayout
+                Spacing="10"
+                HorizontalOptions="Center">
+                
+                <Image
+                    Source="email_send.jpg"
+                    HeightRequest="50"
+                    WidthRequest="50" />
+                
+                <Label
+                    Text="Email Form"
+                    Style="{StaticResource Headline}"
+                    SemanticProperties.HeadingLevel="Level1" />
+            </HorizontalStackLayout>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="4" HorizontalOptions="Fill">
+                <Entry
+                    x:Name="FromEntry"
+                    Text="{Binding From}"
+                    Placeholder="From email"
+                    Grid.Column="0"
+                    SemanticProperties.Hint="Enter the sender's email address"
+                    HorizontalOptions="Fill" />
+
+                <Entry
+                    x:Name="ToEntry"
+                    Text="{Binding To}"
+                    Placeholder="To email"
+                    Grid.Column="1"
+                    SemanticProperties.Hint="Enter the recipient's email address"
+                    HorizontalOptions="Fill" />
+            </Grid>
+            
+            <Entry
+                Text="{Binding Subject}"
+                Placeholder="Subject"
+                SemanticProperties.Hint="Enter the subject of the email"
+                HorizontalOptions="Fill" />
+
+            <Editor
+                Text="{Binding Body}"
+                Placeholder="Body"
+                SemanticProperties.Hint="Enter the body of the email"
+                HorizontalOptions="Fill"
+                HeightRequest="200" />
+
+            <Button
+                Text="Send" 
+                SemanticProperties.Hint="Sends your email"
+                HorizontalOptions="Fill"
+                Command="{Binding SendButtonTappedCommand}"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
